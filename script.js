@@ -33,11 +33,11 @@ function draw() {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Apple
+  // elma
   ctx.fillStyle = "red";
   ctx.fillRect(apple.x, apple.y, box, box);
 
-  // Snake
+  // yılan
   ctx.fillStyle = "lime";
   snake.forEach(p => ctx.fillRect(p.x, p.y, box, box));
 
@@ -48,27 +48,27 @@ function draw() {
   if (direction === "up") head.y -= box;
   if (direction === "down") head.y += box;
 
-  // Duvara çarpma
+  // ⛔ duvara çarpma → sessiz restart
   if (
     head.x < 0 ||
     head.y < 0 ||
     head.x >= canvas.width ||
     head.y >= canvas.height
   ) {
-    alert("Oyun Bitti 💀");
     location.reload();
     return;
   }
 
-  // Elma yeme
+  // 🍎 elma yeme
   if (head.x === apple.x && head.y === apple.y) {
     eatCount++;
-    apple = randomApple();
 
     if (eatCount === 2) {
-      window.location.href = "image.jpg"; // senin foto
+      window.location.href = "image.jpg";
       return;
     }
+
+    apple = randomApple();
   } else {
     snake.pop();
   }
